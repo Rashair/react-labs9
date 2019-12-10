@@ -1,6 +1,8 @@
 import React from "react";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { employeeCreated } from "../redux/actions";
 
 class PageEmployeeCreate extends React.Component {
   constructor(props) {
@@ -65,6 +67,7 @@ class PageEmployeeCreate extends React.Component {
           error: `Saving returned status ${res.status}`
         });
       } else {
+        this.props.employeeCreated(employee);
         this.props.history.push("/");
       }
     });
@@ -137,7 +140,10 @@ const mapStateToProps = (state /* , ownProps */) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  // employeesLoaded: employees => dispatch(employeesLoaded(employees))
+  employeeCreated: employee => dispatch(employeeCreated(employee))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageEmployeeCreate);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(PageEmployeeCreate));
