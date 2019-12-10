@@ -1,7 +1,8 @@
 import { EMPLOYEES_LOADED, EMPLOYEE_CREATED } from "./constants";
 
 export const initialState = {
-  employees: []
+  employees: [],
+  employeesFetched: false
 };
 
 // Read this: https://redux.js.org/basics/reducers
@@ -11,11 +12,11 @@ const appReducer = (state = initialState, action) => {
     case EMPLOYEES_LOADED: {
       const { employees } = action.payload;
       // CAREFUL: You can't modify state variable directly.
-      return { ...state, employees };
+      return { ...state, employees, employeesFetched: true };
     }
     case EMPLOYEE_CREATED: {
-      const { newEmployee } = action.payload;
-      const { newEmployees } = [...state.employees, newEmployee];
+      const newEmp = action.payload.employee;
+      const newEmployees = [...state.employees, newEmp];
       // CAREFUL: You can't modify state variable directly.
       return { ...state, employees: newEmployees };
     }
