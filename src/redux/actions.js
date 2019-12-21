@@ -2,8 +2,28 @@ import {
   EMPLOYEES_LOADED,
   EMPLOYEES_LOADING,
   EMPLOYEES_LOADING_ERROR,
-  EMPLOYEE_CREATED
+  EMPLOYEE_CREATED,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR
 } from "./constants";
+
+export const loginSuccess = user => {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: {
+      user
+    }
+  };
+};
+
+export const loginError = name => {
+  return {
+    type: LOGIN_ERROR,
+    payload: {
+      name
+    }
+  };
+};
 
 export const employeesLoaded = employees => {
   return {

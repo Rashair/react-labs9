@@ -2,10 +2,13 @@ import {
   EMPLOYEES_LOADED,
   EMPLOYEES_LOADING,
   EMPLOYEES_LOADING_ERROR,
-  EMPLOYEE_CREATED
+  EMPLOYEE_CREATED,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR
 } from "./constants";
 
 export const initialState = {
+  user: null,
   employees: [],
   isLoading: true,
   error: null,
@@ -16,6 +19,18 @@ export const initialState = {
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOGIN_SUCCESS: {
+      const { user } = action.payload;
+      return { ...state, user };
+    }
+
+    case LOGIN_ERROR: {
+      const { name } = action.payload;
+      // eslint-disable-next-line no-alert
+      alert(`User ${name} not found.`);
+      return { ...state, user: null };
+    }
+
     case EMPLOYEES_LOADING: {
       return { ...state, loading: true, error: null };
     }
