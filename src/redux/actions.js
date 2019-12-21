@@ -1,10 +1,31 @@
-import { EMPLOYEES_LOADED, EMPLOYEE_CREATED } from "./constants";
+import {
+  EMPLOYEES_LOADED,
+  EMPLOYEES_LOADING,
+  EMPLOYEES_LOADING_ERROR,
+  EMPLOYEE_CREATED
+} from "./constants";
 
 export const employeesLoaded = employees => {
   return {
     type: EMPLOYEES_LOADED,
     payload: {
       employees
+    }
+  };
+};
+
+export const employeesLoading = () => {
+  return {
+    type: EMPLOYEES_LOADING,
+    payload: {}
+  };
+};
+
+export const employeesLoadingError = error => {
+  return {
+    type: EMPLOYEES_LOADING_ERROR,
+    payload: {
+      error
     }
   };
 };
