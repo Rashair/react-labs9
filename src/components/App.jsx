@@ -10,6 +10,7 @@ import thunk from "redux-thunk";
 import rootReducer from "../redux/reducers";
 import PageEmployeesList from "./PageEmployeesList";
 import PageEmployeeCreate from "./PageEmployeeCreate";
+import LoginPage from "./LoginPage";
 
 const store = createStore(
   rootReducer,
@@ -21,6 +22,9 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path="/">
+          <LoginPage />
+        </Route>
+        <Route exact path="/list">
           <PageEmployeesList />
         </Route>
         <Route exact path="/new">
